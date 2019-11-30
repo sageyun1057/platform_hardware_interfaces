@@ -1285,6 +1285,9 @@ Error HWC2On1Adapter::Display::set(hwc_display_contents_1& hwcContents) {
     for (size_t l = 0; l < numLayers - 1; ++l) {
         auto& layer = hwcContents.hwLayers[l];
         if (layer.compositionType == HWC_FRAMEBUFFER) {
+            if(layer.acquireFenceFd < 0) {
+                continue;
+            }
             ALOGV("Closing fence %d for layer %zd", layer.acquireFenceFd, l);
             close(layer.acquireFenceFd);
             layer.acquireFenceFd = -1;

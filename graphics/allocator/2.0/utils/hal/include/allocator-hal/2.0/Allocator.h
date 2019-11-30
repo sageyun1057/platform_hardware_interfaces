@@ -68,7 +68,7 @@ class AllocatorImpl : public Interface {
         hidl_cb(Error::NONE, stride, hidlBuffers);
 
         // free the local handles
-        mHal->freeBuffers(buffers);
+//        mHal->freeBuffers(buffers);
 
         return Void();
     }
